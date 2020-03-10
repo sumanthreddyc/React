@@ -14,13 +14,13 @@ class App extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    topstoriesid: data
+                    topstoriesid: data.results
                 })
             })
     }
 
     render() {
-      let storyid = []
+      let storyid = [];
       for(var i = 0; i < 500; i++){
                 storyid.push(<Componentid id = {this.state.topstoriesid[i]} />)
                 }
