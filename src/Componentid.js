@@ -10,16 +10,21 @@ class Componentid extends React.Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-        fetch("https://hacker-news.firebaseio.com/v0/item/{this.nextProps.id}.json?print=pretty")
+	componentDidMount() {
+        fetch("https://hacker-news.firebaseio.com/v0/item/{this.props.id}.json?print=pretty")
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                this.setState({
+                    item: data
+                })
+            })
     }
 
 
 	render() {
 		return(
 			<div>
+				<p>{this.props.id}</p>
 				<p>{this.state.item.title}</p>
 			</div>
 		)
