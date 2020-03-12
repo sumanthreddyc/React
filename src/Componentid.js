@@ -6,26 +6,34 @@ class Componentid extends React.Component {
 	constructor() {
 		super()
 		this.state = {
+			loading: true,
 			item: {}
 		}
 	}
 
 	componentDidMount() {
-        fetch("https://hacker-news.firebaseio.com/v0/item/{this.props.id}.json?print=pretty")
+        fetch("https://hacker-news.firebaseio.com/v0/item/" + this.props.id + ".json?print=pretty")
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    item: data
+                    item: data,
+                    loading: false
                 })
             })
     }
 
 
 	render() {
+		
 		return(
 			<div>
-				<p>{this.props.id}</p>
-				<p>{this.state.item.title}</p>
+				{this.state.loading || !this.state.item ? (
+					<div>loading...</div> 
+					) : (
+					<div>
+						<div>{this.state.item.title}</div>
+					</div>
+					)}
 			</div>
 		)
 	}
