@@ -8,7 +8,7 @@ class App extends Component {
             topstoriesid: []
         }
     }
-   
+
     componentDidMount() {
         fetch("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty")
             .then(response => response.json())
@@ -20,13 +20,14 @@ class App extends Component {
     }
 
     render() {
-      let storyid = []
-      for(var i = 0; i < 500; i++){
-                storyid.push(<Componentid id = {this.state.topstoriesid[i]} />)
-                }
+        console.log("this.state", this.state);
+        let storyid = []
+        for (var i = 0; i < 500; i++) {
+            storyid.push(<Componentid id={this.state.topstoriesid[i]}/>)
+        }
         return (
             <div>
-              {storyid}
+                {storyid}
             </div>
         )
     }
